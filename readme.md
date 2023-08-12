@@ -27,6 +27,7 @@ A aplicação desenvolvida roda em instância local e no momento não está em e
 Utilização do framework FastAPI para integração ao banco de dados MySQL, documentação da API e definição de rotas URL para requisições HTTP.
 
 - bancodedados.py
+  
 Integração com o banco de dados MySQL hospedado em instância local.
 
 - googletranslate.py
