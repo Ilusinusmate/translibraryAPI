@@ -56,12 +56,12 @@ def searchBookByTitle(title:str, config: dict = config): # title: str, config: j
     else:
         return json.dumps({'error': 'Book not found'}, indent=4)
 
-#NOT IMPLEMENTED
+#NOT IMPLEMENTED (For front-end choice hub)
 def titles():
     cnx = mysql.connector.connect(**config)
     cursor = cnx.cursor()
 
-    query = f"SELECT * FROM books WHERE title = {title}"
+    query = f"SELECT name from books;"
     cursor.execute(query)
     book_data = cursor.fetchone()
 
