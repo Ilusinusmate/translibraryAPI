@@ -1,22 +1,29 @@
-# Translated Library
+### TransLibrary
 
-NENHUMA DEPENDÊNCIA NECESSÁRIA FORA DA VENV.
+## API de Disponibilização e Tradução de livros.
 
-- googletranslate
+A aplicação desenvolvida roda em instância local e no momento não está em estágio de produção. Em breve o banco de dados e a aplicação estará em cloud server.
 
-API utilizada para a tradução dos livros.
+Como testar a aplicação:
+• Inicie um servidor MySQL e execute books.sql
+• Configure a conexão com o banco de dados no dicionário "config" no arquivo bancodedados.py
+• Ative o Virtual Environment "venv"
+• Rode o arquivo main.py
+• Faça requisições HTTP para "https://localhost:8000/books"
+• Para acessar a documentação da API, acesse "https://localhost:8000/docs" em um navegador
 
-- Apertium
+< TODAS AS DEPENDÊNCIAS NA VENV >
 
-Foi a tecnologia utilizada para traduzir os livros anteriormente,
-entretanto o mantimento da lib foi descontinuado.
-(não dependia de internet)
+- main.py
 
-- traslateOpenAI
+Utilização do framework FastAPI para integração ao banco de dados MySQL, documentação da API e definição de rotas URL para requisições HTTP.
 
-Não é utilizado no código.
-Este código não é utilizado na aplicação pois não é gratuito,
-Entretanto seria uma forma mais eficiente e precisa de traduzir.
+- bancodedados.py
+Integração com o banco de dados MySQL hospedado em instância local.
+
+- googletranslate.py
+
+Integração com API do google. Utilizada para a tradução dos livros.
 
 - books.sql 
 
