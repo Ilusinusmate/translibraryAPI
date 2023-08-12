@@ -8,7 +8,7 @@ A aplicação desenvolvida roda em instância local e no momento não está em e
 
 • Inicie um servidor MySQL e execute books.sql
 
-• Configure a conexão com o banco de dados no dicionário "config" no arquivo bancodedados.py
+• Configure a conexão com o banco de dados no dicionário "config" no arquivo database.py
 
 • Ative o Virtual Environment "venv"
 
@@ -26,7 +26,7 @@ A aplicação desenvolvida roda em instância local e no momento não está em e
 
 Utilização do framework FastAPI para integração ao banco de dados MySQL, documentação da API e definição de rotas URL para requisições HTTP.
 
-- bancodedados.py
+- database.py
   
 Integração com o banco de dados MySQL hospedado em instância local.
 
