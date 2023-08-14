@@ -38,3 +38,13 @@ Integração com API do google. Utilizada para a tradução dos livros.
 
 Para a utilização de um banco de dados no formato utilizado,
 rode o arquivo sql e terá um banco de dados para teste.
+
+- sqlite.py
+
+Script para formação do banco de dados de teste a partir de
+"books.sql", execute somente uma vez.
+
+- banco.sqlite
+
+Banco de dados no formato de arquivo, gerenciado pela lib
+sqlite3 built-in do Python3.
