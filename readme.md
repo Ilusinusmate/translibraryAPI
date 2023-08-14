@@ -2,13 +2,11 @@
 
 ## API de Disponibilização e Tradução de livros.
 
-A aplicação desenvolvida roda em instância local e no momento não está em estágio de produção. Em breve o banco de dados e a aplicação estará em cloud server.
+A aplicação desenvolvida roda em instância local e no momento não está em estágio de produção.
 
 ## Como testar a aplicação:
 
-• Inicie um servidor MySQL e execute books.sql
-
-• Configure a conexão com o banco de dados no dicionário "config" no arquivo database.py
+• Crie o banco de dados SQLite executando o script "sqlite.py" caso o mesmo não exista.
 
 • Ative o Virtual Environment "venv"
 
