@@ -1,19 +1,9 @@
-import mysql.connector
+import sqlite3
 import json
 
-# CONFIGURE ESTE DICIONÁRIO SEGUNDO A CONFIGURAÇÃO DO SEU BANCO DE DADOS
-
-config = {
-    'user': 'root',
-    'password': '12345678', # Certifique-se de por a senha correta
-    'host': 'localhost',
-    'port': '3306', # A porta pode variar de acordo com sua configuração
-    'database': 'library',
-    'raise_on_warnings': True
-}
-
 def searchBookByID(id: int, config: dict = config): # id: int, config: json/dict -> querry: json
-    cnx = mysql.connector.connect(**config)
+    
+    cnx = sqlite3.connect("banco.sqlite")
     cursor = cnx.cursor()
 
     query = f"SELECT * FROM books WHERE id = {id}"
@@ -35,7 +25,7 @@ def searchBookByID(id: int, config: dict = config): # id: int, config: json/dict
         return json.dumps({'error': 'Book not found'}, indent=4)
 
 def searchBookByTitle(title:str, config: dict = config): # title: str, config: json/dict -> querry: json
-    cnx = mysql.connector.connect(**config)
+    cnx = sqlite3.connect("banco.sqlite")
     cursor = cnx.cursor()
 
     query = f"SELECT * FROM books WHERE title = {title}"
@@ -58,7 +48,7 @@ def searchBookByTitle(title:str, config: dict = config): # title: str, config: j
 
 #NOT IMPLEMENTED (For front-end choice hub)
 def titles():
-    cnx = mysql.connector.connect(**config)
+    cnx.sqlite3.connect("banco.sqlite")
     cursor = cnx.cursor()
 
     query = f"SELECT name from books;"
