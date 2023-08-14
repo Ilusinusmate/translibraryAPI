@@ -1,9 +1,9 @@
-CREATE DATABASE IF NOT EXISTS library;
+-- CREATE DATABASE IF NOT EXISTS library;
 
-USE library;
+-- USE library;
 
 CREATE TABLE IF NOT EXISTS books (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
     title VARCHAR(255) NOT NULL,
     author VARCHAR(255) NOT NULL,
     about TEXT,
@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS books (
 
 
 INSERT INTO books (title, author, about, first_chapter) VALUES (
-    'Harry Potter and the Sorcerer\'s Stone',
+    'Harry Potter and the Sorcerers Stone',
     'J.K. Rowling',
     'The first book in the Harry Potter series.',
     'Mr. and Mrs. Dursley, of number four, Privet Drive...'
