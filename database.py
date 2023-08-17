@@ -1,5 +1,6 @@
 import sqlite3
 import json
+from typing import Union
 
 def searchBookByID(id: int, config: dict = config): # id: int, config: json/dict -> querry: json
     
@@ -48,7 +49,7 @@ def searchBookByTitle(title:str, config: dict = config): # title: str, config: j
 
 #NOT IMPLEMENTED (For front-end choice hub)
 def titles():
-    cnx.sqlite3.connect("banco.sqlite")
+    cnx = sqlite3.connect("banco.sqlite")
     cursor = cnx.cursor()
 
     query = f"SELECT name from books;"
@@ -68,6 +69,17 @@ def titles():
         return json.dumps(book, indent=4)
     else:
         return json.dumps({'error': 'Book not found'}, indent=4)
+
+def addBook(title, author, description, book: Union[str, bytes]):
+    cnx = sqlite3.connect("banco.sqlite")
+    cursor = cnx.cursor()
+
+    query = f"INSERT INTO books VALUES(?, ?, ?, ?)"
+    cursor.execute(query, (title, author, description, book))
+    book_data = cursor.fetchone()
+
+    cnx.close()
+
 
 if __name__ == "__main__":
   #PARA TESTES
