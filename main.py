@@ -1,6 +1,8 @@
-from fastapi import FastAPI, Query
-from database import searchBookByID
+from fastapi import FastAPI, Query, File, UploadFile, HTTPException
+from fastapi.responses import FileResponse, Response, JSONResponse
+from database import searchBookByID, searchBookByTitle, addBook
 from googletranslate import async_translate
+from pdfs import bytesToPdf, delPdf
 import uvicorn
 import json
 import asyncio
@@ -27,23 +29,46 @@ async def querry(
     #     dict: As informações do livro traduzidas.
     # """
 
-    book = searchBookByID(id)
-    book = json.loads(book)  
+    delPdf("temp")
+
+    if isinstance(id, int):
+        book = searchBookByID(id)
+    elif isinstance(id, str):
+        book = searchBookByTitle(id)
+    
+    if book == 404:
+        return HTTPException(404, "Book not found")
+
+    pdfName = "temp"
+
+    bytesToPdf(pdfBytes=book[1], pdfName=pdfName)
+    book = json.loads(book[0])  
+
     tasks = [
         async_translate(book["title"], lang, "auto"),
         async_translate(book["description"], lang, "auto"),
-        async_translate(book["first_chapter"], lang, "auto")
     ]
 
-    translated_title, translated_description, translated_first_chapter = await asyncio.gather(*tasks)
+    translated_title, translated_description,  = await asyncio.gather(*tasks)
 
     translated_book = {
         "title": translated_title,
         "author": book["author"],
         "description": translated_description,
-        "first_chapter": translated_first_chapter
     }
+    
     return translated_book
+
+@app.post("/books")
+async def uploadBook(
+    title: str = Query(description="Title of the book"),
+    author: str = Query(description="Author of the book, on it's own language"),
+    description: str = Query(description="Short description about the book"),
+    file : UploadFile = File(description="The book in pdf format")
+):
+    await addBook(title, author, description, file.file.read())
+    return JSONResponse(content={"message":"PDF Upload Successfuly"})
+
 
 if __name__ == "__main__":
     uvicorn.run(app, host="localhost", port=8000)

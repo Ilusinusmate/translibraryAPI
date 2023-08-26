@@ -1,31 +1,29 @@
 import sqlite3
 import json
-from typing import Union
+from typing import Union, Optional
 
-def searchBookByID(id: int, config: dict = config): # id: int, config: json/dict -> querry: json
-    
+def searchBookByTitle(id:int): # id: int -> json (title, author, description), file (pdf : bytes)
     cnx = sqlite3.connect("banco.sqlite")
     cursor = cnx.cursor()
 
-    query = f"SELECT * FROM books WHERE id = {id}"
+    query = f"SELECT * FROM books WHERE title = {id}"
     cursor.execute(query)
     book_data = cursor.fetchone()
 
     cnx.close()
 
-    if book_data:
+    if book_data:   
         book = {
             'id': book_data[0],
             'title': book_data[1],
             'author': book_data[2],
             'description': book_data[3],
-            'first_chapter': book_data[4]
         }
-        return json.dumps(book, indent=4)
+        return (json.dumps(book, indent=4), book_data[4])
     else:
-        return json.dumps({'error': 'Book not found'}, indent=4)
+        return 404
 
-def searchBookByTitle(title:str, config: dict = config): # title: str, config: json/dict -> querry: json
+def searchBookByTitle(title:str): # title: str -> json (title, author, description), file (pdf : bytes)
     cnx = sqlite3.connect("banco.sqlite")
     cursor = cnx.cursor()
 
@@ -41,11 +39,10 @@ def searchBookByTitle(title:str, config: dict = config): # title: str, config: j
             'title': book_data[1],
             'author': book_data[2],
             'description': book_data[3],
-            'first_chapter': book_data[4]
         }
-        return json.dumps(book, indent=4)
+        return (json.dumps(book, indent=4), book_data[4])
     else:
-        return json.dumps({'error': 'Book not found'}, indent=4)
+        return 404
 
 #NOT IMPLEMENTED (For front-end choice hub)
 def titles():
@@ -70,7 +67,7 @@ def titles():
     else:
         return json.dumps({'error': 'Book not found'}, indent=4)
 
-def addBook(title, author, description, book: Union[str, bytes]):
+async def addBook(title, author, description: Optional[str], book: Union[str, bytes]):
     cnx = sqlite3.connect("banco.sqlite")
     cursor = cnx.cursor()
 
