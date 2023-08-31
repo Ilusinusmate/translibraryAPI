@@ -22,11 +22,11 @@ A aplicação desenvolvida roda em instância local e no momento não está em e
 
 - main.py
 
-Utilização do framework FastAPI para integração ao banco de dados MySQL, documentação da API e definição de rotas URL para requisições HTTP.
+Utilização do framework FastAPI para integração ao banco de dados, documentação da API e definição de endpoints URL para requisições HTTP.
 
 - database.py
   
-Integração com o banco de dados MySQL hospedado em instância local.
+Interações e queries com o banco de dados banco.bd, utilizando SQLAlchemy como ORM.
 
 - googletranslate.py
 
@@ -42,7 +42,7 @@ rode o arquivo sql e terá um banco de dados para teste.
 Script para formação do banco de dados de teste a partir de
 "books.sql", execute somente uma vez.
 
-- banco.sqlite
+- banco.bd
 
-Banco de dados no formato de arquivo, gerenciado pela lib
-sqlite3 built-in do Python3.
+Banco de dados no formato de arquivo, gerenciado pela ORM SQLAlchemy,
+baseado em SQLite3, built-in no python3.
