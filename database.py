@@ -6,7 +6,13 @@ import json
 from typing import Union, Optional, Tuple
 
 #config
-Engine = create_engine("sqlite:///banco.db")
+try:
+    Engine = create_engine("sqlite:///banco.db")
+except:
+    from backup import create_database
+    create_database()
+    Engine = create_engine("sqlite:///banco.db")
+    
 Base = declarative_base()
 Session = sessionmaker(bind=Engine)
 

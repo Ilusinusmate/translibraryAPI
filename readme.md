@@ -7,6 +7,7 @@ A aplicação desenvolvida roda em instância local e no momento não está em e
 ## Como testar a aplicação:
 
 • Crie o banco de dados SQLite executando o script "sqlite.py" caso o mesmo não exista.
+(Esta etapa é opcional, caso o banco de dados não seja encontrado, utilizará o arquivo books.sql para criar um novo arquivo de banco de dados)
 
 • Ative o Virtual Environment "venv"
 
