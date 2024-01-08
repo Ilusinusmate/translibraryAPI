@@ -5,10 +5,12 @@ import os
 #   SETUP
 app = FastAPI()
 BOOKS_DIRECTORY = __file__.removesuffix("\\__init__.py") + "\\books"
+
 if not os.path.exists(BOOKS_DIRECTORY):
     os.makedirs(BOOKS_DIRECTORY)
+    
 ALLOWED_BOOK_TYPES = {"pdf", "txt"}
-
+SECRET_API_KEY = "767c425bc5mshd400a8c6846915cp1c71f3jsn681ecf4f7c78"   
 
 #   INICIALIZATE FILES
 
@@ -16,3 +18,4 @@ from project import routes
 from project import models
 from project import database
 from project import validations
+from project import translation

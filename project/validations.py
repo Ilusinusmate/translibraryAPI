@@ -8,8 +8,8 @@ from project import ALLOWED_BOOK_TYPES
 from icecream import ic
 
 class ValidationBook(BaseModel):
-    title: constr(max_length=40)
-    author: constr(max_length=20)
+    title: constr(max_length=255)
+    author: constr(max_length=40)
     description: constr(max_length=255)
     
 def is_valid_book_file(file_name: str) -> bool:
