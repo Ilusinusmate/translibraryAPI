@@ -1,7 +1,6 @@
 from pydantic import BaseModel, constr
 from fastapi import UploadFile
 from typing import Optional
-import imghdr
 
 from project import ALLOWED_BOOK_TYPES
 
